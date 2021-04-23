@@ -1863,7 +1863,7 @@ summary {
   addKlippy('right', 'top', 'auto', '1', 'Klicken zum Kopieren', 'Kopiert!');
 </script>
 <p>Das englische Wort <em>sentiment</em> bedeutet auf Deutsch <em>Stimmung</em> oder <em>Meinung</em>, auf Chinesisch 情绪 oder 意见. Die sentiment analysis ist ein Teil von Text Mining und <q>bezeichnet die automatische Auswertung von Texten mit dem Ziel, eine [Äußerung] als positiv oder negativ zu erkennen</q> (<a href="https://de.wikipedia.org/wiki/Sentiment_Detection">Wikipedia</a>, 16.01.2021). Das ist sprachwissenschaftlich relevant, aber zum Beispiel auch für Händler oder in der Werbung wichtig.</p>
-<p>Im Folgenden werden Sie <strong>(1)</strong> die Stimmung Ihres Märchens analysieren und visualisieren und die Ergebnisse vergleichen.</p>
+<p>Im Folgenden werden Sie <strong>(1)</strong> die Stimmung Ihres Märchens analysieren und visualisieren und die Ergebnisse vergleichen. <strong>(2)</strong> Die Stimmung deutscher und chinesischer Märchen analysieren und vergleichen.</p>
 <div id="section" class="section level1">
 <h1>0</h1>
 <p>Bevor Sie beginnen, müssen Sie einige Pakete installieren und die nötigen Pakete aktivieren.</p>
@@ -1947,6 +1947,34 @@ Tipp<br />
 Welche Stimmung drückt folgender Satz aus:<br />
 <em>Ich habe keinen guten Tag.</em></p>
 </div>
+</div>
+<div id="section-2" class="section level1">
+<h1>2</h1>
+<p>Im Folgenden analysieren und interpretieren Sie die Stimmung in deutschen und chinesischen Volksmärchen.</p>
+<div class="think">
+<p><strong>Denkpause</strong><br />
+Bevor Sie beginnen: Erwarten Sie Ihrem Gefühl nach Unterschiede? Wenn ja, welche?</p>
+</div>
+<p>Wiederholen Sie die Analyse für die beiden Märchen-Korpora.</p>
+<p>Lesen Sie als Erstes die Korpora ein. Zur Erinnerung:</p>
+<pre class="r"><code>src&lt;-list.files(&quot;./corpus-wilhelm/&quot;)
+df&lt;-data.frame(matrix(nrow = length(src), ncol = 2))
+colnames(df)&lt;-c(&quot;TEXT&quot;, &quot;DATEI&quot;)
+for(i in 1:length(src)){
+  df[i,1]&lt;-readLines(paste(&quot;./corpus-wilhelm/&quot;, src[i], sep = &quot;&quot;))
+  df[i,2]&lt;-src[i]
+}
+wilhelm&lt;-as_tibble(df)
+
+src&lt;-list.files(&quot;./corpus-grimm/&quot;)
+df&lt;-data.frame(matrix(nrow = length(src), ncol = 2))
+colnames(df)&lt;-c(&quot;TEXT&quot;, &quot;DATEI&quot;)
+for(i in 1:length(src)){
+  df[i,1]&lt;-readLines(paste(&quot;./corpus-grimm/&quot;, src[i], sep = &quot;&quot;))
+  df[i,2]&lt;-src[i]
+}
+grimm&lt;-as_tibble(df)
+rm(df, i, src)</code></pre>
 <div id="literatur" class="section level2 unnumbered">
 <h2>Literatur</h2>
 <div id="refs" class="references">

@@ -1804,13 +1804,13 @@ summary {
 <!-- rnb-text-end -->
 <!-- rnb-text-begin -->
 <p>Das englische Wort <em>sentiment</em> bedeutet auf Deutsch <em>Stimmung</em> oder <em>Meinung</em>, auf Chinesisch 情绪 oder 意见. Die sentiment analysis ist ein Teil von Text Mining und <q>bezeichnet die automatische Auswertung von Texten mit dem Ziel, eine [Äußerung] als positiv oder negativ zu erkennen</q> (<a href="https://de.wikipedia.org/wiki/Sentiment_Detection">Wikipedia</a>, 16.01.2021). Das ist sprachwissenschaftlich relevant, aber zum Beispiel auch für Händler oder in der Werbung wichtig.</p>
-<p>Im Folgenden werden Sie <strong>(1)</strong> die Stimmung Ihres Märchens analysieren und visualisieren und die Ergebnisse vergleichen.</p>
+<p>Im Folgenden werden Sie <strong>(1)</strong> die Stimmung Ihres Märchens analysieren und visualisieren und die Ergebnisse vergleichen. <strong>(2)</strong> Die Stimmung deutscher und chinesischer Märchen analysieren und vergleichen.</p>
 <div id="section" class="section level1">
 <h1>0</h1>
 <p>Bevor Sie beginnen, müssen Sie einige Pakete installieren und die nötigen Pakete aktivieren.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbImxpYnJhcnkoZHBseXIpIiwibGlicmFyeSh0aWR5dGV4dCkiLCJsaWJyYXJ5KHRtKSIsImxpYnJhcnkodG9vbHMpIiwibGlicmFyeSh3b3JkY2xvdWQpIiwibGlicmFyeShyZXNoYXBlMikiLCJsaWJyYXJ5KGdncGxvdDIpIl19 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmxpYnJhcnkodGlkeXRleHQpXG5saWJyYXJ5KHRtKVxubGlicmFyeSh0b29scylcbmxpYnJhcnkod29yZGNsb3VkKVxubGlicmFyeShyZXNoYXBlMilcbmxpYnJhcnkoZ2dwbG90MilcbmBgYCJ9 -->
 <pre class="r"><code>library(dplyr)
 library(tidytext)
 library(tm)
@@ -1827,8 +1827,8 @@ library(ggplot2)</code></pre>
 <p>Lesen Sie Ihren Märchentext ein. Zur Erinnerung:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbImZpbGVDb25uPC1maWxlKFwiLi9jb3JwdXMtZ3JpbW0vbWFlaHJjaGVuX3Zvbl9laW5lbV9kZXJfYXVzem9nX2Rhc19mdWVyY2h0ZW5fenVfbGVybmVuLnR4dFwiKSIsInRleHQ8LXJlYWRMaW5lcyhmaWxlQ29ubikiLCJjbG9zZShmaWxlQ29ubikiLCJ0ZXh0IiwiIiwidGV4dF9kZjwtdGliYmxlKFRFWFQgPSB0ZXh0KSJdfQ== -->
-<pre class="r"><code>fileConn&lt;-file(&quot;./corpus-grimm/maehrchen_von_einem_der_auszog_das_fuerchten_zu_lernen.txt&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmlsZUNvbm48LWZpbGUoXFwuL2NvcnB1cy1ncmltbS9tYWVocmNoZW5fdm9uX2VpbmVtX2Rlcl9hdXN6b2dfZGFzX2Z1ZXJjaHRlbl96dV9sZXJuZW4udHh0XFwpXG50ZXh0PC1yZWFkTGluZXMoZmlsZUNvbm4pXG5jbG9zZShmaWxlQ29ubilcbnRleHRcblxudGV4dF9kZjwtdGliYmxlKFRFWFQgPSB0ZXh0KVxuYGBgIn0= -->
+<pre class="r"><code>fileConn&lt;-file(\./corpus-grimm/maehrchen_von_einem_der_auszog_das_fuerchten_zu_lernen.txt\)
 text&lt;-readLines(fileConn)
 close(fileConn)
 text
@@ -1845,8 +1845,8 @@ Wie könnten Sie ein solches Wörterbuch erstellen?</p>
 <p>Die Universität Leipzig hat ein Stimmungswörterbuch für das Deutsche namens <em>SentimentWortschatz</em> oder <em>SentiWS</em> erstellt <span class="citation">(Remus, Quasthoff, and Heyer 2010)</span>. Ich habe das Wörterbuch für Sie vorbereitet. Laden Sie das Wörterbuch in R mit folgenden Befehlen.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbInNlbnRpV1M8LXJlYWQudGFibGUoXCIuL2RhdGEvc2VudGlXUy50eHRcIiwgc2VwID0gXCJcXHRcIiwgaGVhZGVyID0gVFJVRSkiLCJzZW50aVdTPC1hc190aWJibGUoc2VudGlXUykiLCJzZW50aVdTIl19 -->
-<pre class="r"><code>sentiWS&lt;-read.table(&quot;./data/sentiWS.txt&quot;, sep = &quot;\t&quot;, header = TRUE)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VudGlXUzwtcmVhZC50YWJsZShcXC4vZGF0YS9zZW50aVdTLnR4dFxcLCBzZXAgPSBcXFxcdFxcLCBoZWFkZXIgPSBUUlVFKVxuc2VudGlXUzwtYXNfdGliYmxlKHNlbnRpV1MpXG5zZW50aVdTXG5gYGAifQ== -->
+<pre class="r"><code>sentiWS&lt;-read.table(\./data/sentiWS.txt\, sep = \\t\, header = TRUE)
 sentiWS&lt;-as_tibble(sentiWS)
 sentiWS</code></pre>
 <!-- rnb-source-end -->
@@ -1855,9 +1855,9 @@ sentiWS</code></pre>
 <p>Im Wörterbuch haben alle Einträge einen Wert zwischen -1 und 1. Ein positiver Wert zeigt eine positive Stimmung an, ein negativer Wert eine negative Stimmung. Ergänzen Sie das Wörterbuch um einen Faktor <em>POLARITY</em>, der anzeigt, ob ein Wort positiv oder negativ ist.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbInNlbnRpV1M8LXNlbnRpV1MgJT4lICIsIiAgbXV0YXRlKFBPTEFSSVRZID0gaWZlbHNlKFZBTFVFIDwgMCwgXCJuZWdhdGl2ZVwiLCBcInBvc2l0aXZlXCIpKSIsInNlbnRpV1MiXX0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VudGlXUzwtc2VudGlXUyAlPiUgXG4gIG11dGF0ZShQT0xBUklUWSA9IGlmZWxzZShWQUxVRSA8IDAsIFxcbmVnYXRpdmVcXCwgXFxwb3NpdGl2ZVxcKSlcbnNlbnRpV1NcbmBgYCJ9 -->
 <pre class="r"><code>sentiWS&lt;-sentiWS %&gt;% 
-  mutate(POLARITY = ifelse(VALUE &lt; 0, &quot;negative&quot;, &quot;positive&quot;))
+  mutate(POLARITY = ifelse(VALUE &lt; 0, \negative\, \positive\))
 sentiWS</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1869,31 +1869,31 @@ Was werden die Einträge für <em>freundlich</em> und <em>gemein</em> zeigen?</p
 </div>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbInNlbnRpV1MgJT4lIiwiICBmaWx0ZXIoV09SRCA9PSBcImZyZXVuZGxpY2hcIikiLCJzZW50aVdTICU+JSIsIiAgZmlsdGVyKFdPUkQgPT0gXCJnZW1laW5cIikiXX0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VudGlXUyAlPiVcbiAgZmlsdGVyKFdPUkQgPT0gXFxmcmV1bmRsaWNoXFwpXG5zZW50aVdTICU+JVxuICBmaWx0ZXIoV09SRCA9PSBcXGdlbWVpblxcKVxuYGBgIn0= -->
 <pre class="r"><code>sentiWS %&gt;%
-  filter(WORD == &quot;freundlich&quot;)
+  filter(WORD == \freundlich\)
 sentiWS %&gt;%
-  filter(WORD == &quot;gemein&quot;)</code></pre>
+  filter(WORD == \gemein\)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Geben Sie jetzt jedem Wort in Ihrem Märchen mit der Funktion <code>inner_join()</code> einen Stimmungswert. (Notiz: Vermutlich ist nicht jedes Wort in Ihrem Märchen im Wörterbuch. Mit <code>inner_join()</code> werden nur die Wörter bearbeitet, die sowohl im Märchen als auch im Wörterbuch enthalten sind.)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiMgVG9rZW5pc2llcmVuIiwidG9rZW5zX2RmPC10ZXh0X2RmICU+JSIsIiAgdW5uZXN0X3Rva2VucyhXT1JELCBURVhUKSIsIiIsIiMgU3RvcHB3w7ZydGVyIiwiYWxsU3RvcHdvcmRzPC1hcHBlbmQoc3RvcHdvcmRzKFwiZGVcIiksIHRvVGl0bGVDYXNlKHN0b3B3b3JkcyhcImRlXCIpKSkiLCJzdG9wd29yZF9kZjwtdGliYmxlKFdPUkQgPSBhbGxTdG9wd29yZHMpIiwidG9rZW5zX2RmPC10b2tlbnNfZGYgJT4lIiwiICBhbnRpX2pvaW4oc3RvcHdvcmRfZGYsIGJ5ID0gXCJXT1JEXCIpIiwiIiwiIyBTdGltbXVuZ3N3ZXJ0ZSIsInNlbnRpX2RmPC10b2tlbnNfZGYgJT4lIiwiICBpbm5lcl9qb2luKHNlbnRpV1MsIGJ5ID0gXCJXT1JEXCIpIiwic2VudGlfZGYiXX0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUb2tlbmlzaWVyZW5cbnRva2Vuc19kZjwtdGV4dF9kZiAlPiVcbiAgdW5uZXN0X3Rva2VucyhXT1JELCBURVhUKVxuXG4jIFN0b3Bwd8O2cnRlclxuYWxsU3RvcHdvcmRzPC1hcHBlbmQoc3RvcHdvcmRzKFxcZGVcXCksIHRvVGl0bGVDYXNlKHN0b3B3b3JkcyhcXGRlXFwpKSlcbnN0b3B3b3JkX2RmPC10aWJibGUoV09SRCA9IGFsbFN0b3B3b3JkcylcbnRva2Vuc19kZjwtdG9rZW5zX2RmICU+JVxuICBhbnRpX2pvaW4oc3RvcHdvcmRfZGYsIGJ5ID0gXFxXT1JEXFwpXG5cbiMgU3RpbW11bmdzd2VydGVcbnNlbnRpX2RmPC10b2tlbnNfZGYgJT4lXG4gIGlubmVyX2pvaW4oc2VudGlXUywgYnkgPSBcXFdPUkRcXClcbnNlbnRpX2RmXG5gYGAifQ== -->
 <pre class="r"><code># Tokenisieren
 tokens_df&lt;-text_df %&gt;%
   unnest_tokens(WORD, TEXT)
 
 # Stoppwörter
-allStopwords&lt;-append(stopwords(&quot;de&quot;), toTitleCase(stopwords(&quot;de&quot;)))
+allStopwords&lt;-append(stopwords(\de\), toTitleCase(stopwords(\de\)))
 stopword_df&lt;-tibble(WORD = allStopwords)
 tokens_df&lt;-tokens_df %&gt;%
-  anti_join(stopword_df, by = &quot;WORD&quot;)
+  anti_join(stopword_df, by = \WORD\)
 
 # Stimmungswerte
 senti_df&lt;-tokens_df %&gt;%
-  inner_join(sentiWS, by = &quot;WORD&quot;)
+  inner_join(sentiWS, by = \WORD\)
 senti_df</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1901,7 +1901,7 @@ senti_df</code></pre>
 <p>Welche Wörter tragen besonders stark zur Stimmung in Ihrem Märchen bei? Der folgende Code erzeugt eine Balkengrafik zur Veranschaulichung der Häufigkeit verschiedener Wörter (Types) und ihrer Stimmung.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbImxpYnJhcnkoZ2dwbG90MikiLCIiLCJzZW50aV9kZiAlPiUiLCIgIGNvdW50KFRZUEUsIFBPTEFSSVRZLCBzb3J0ID0gVFJVRSkgJT4lIiwiICBncm91cF9ieShQT0xBUklUWSkgJT4lIiwiICBtdXRhdGUoVFlQRSA9IHJlb3JkZXIoVFlQRSwgbikpICU+JSIsIiAgc2xpY2VfaGVhZChuID0gMzApICU+JSIsIiAgZ2dwbG90KGFlcyhuLCBUWVBFLCBmaWxsID0gUE9MQVJJVFkpKSArIiwiICBnZW9tX2NvbChzaG93LmxlZ2VuZCA9IEZBTFNFKSArICIsIiAgZmFjZXRfd3JhcCh+UE9MQVJJVFksIHNjYWxlcyA9IFwiZnJlZVwiKSArICIsIiAgbGFicyh5PU5VTEwsIHg9TlVMTCkiXX0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxuXG5zZW50aV9kZiAlPiVcbiAgY291bnQoVFlQRSwgUE9MQVJJVFksIHNvcnQgPSBUUlVFKSAlPiVcbiAgZ3JvdXBfYnkoUE9MQVJJVFkpICU+JVxuICBtdXRhdGUoVFlQRSA9IHJlb3JkZXIoVFlQRSwgbikpICU+JVxuICBzbGljZV9oZWFkKG4gPSAzMCkgJT4lXG4gIGdncGxvdChhZXMobiwgVFlQRSwgZmlsbCA9IFBPTEFSSVRZKSkgK1xuICBnZW9tX2NvbChzaG93LmxlZ2VuZCA9IEZBTFNFKSArIFxuICBmYWNldF93cmFwKH5QT0xBUklUWSwgc2NhbGVzID0gXFxmcmVlXFwpICsgXG4gIGxhYnMoeT1OVUxMLCB4PU5VTEwpXG5gYGAifQ== -->
 <pre class="r"><code>library(ggplot2)
 
 senti_df %&gt;%
@@ -1911,7 +1911,7 @@ senti_df %&gt;%
   slice_head(n = 30) %&gt;%
   ggplot(aes(n, TYPE, fill = POLARITY)) +
   geom_col(show.legend = FALSE) + 
-  facet_wrap(~POLARITY, scales = &quot;free&quot;) + 
+  facet_wrap(~POLARITY, scales = \free\) + 
   labs(y=NULL, x=NULL)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1919,11 +1919,11 @@ senti_df %&gt;%
 <p>Auch eine schöne Art, Häufigkeiten zu veranschaulichen, sind Wortwolken.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbInNlbnRpX2RmICU+JSIsIiAgY291bnQoVFlQRSwgUE9MQVJJVFksIHNvcnQgPSBUUlVFKSAlPiUiLCIgIGFjYXN0KFRZUEUgfiBQT0xBUklUWSwgdmFsdWUudmFyID0gXCJuXCIsIGZpbGwgPSAwKSAlPiUiLCIgIGNvbXBhcmlzb24uY2xvdWQoY29sb3JzID0gYyhcIiNCNDQ2NEJcIiwgXCIjNDY4MkI0XCIpLCIsIiAgICAgICAgICAgICAgICAgICBtYXgud29yZHMgPSAxMDAsIHRpdGxlLnNpemUgPSAyKSJdfQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VudGlfZGYgJT4lXG4gIGNvdW50KFRZUEUsIFBPTEFSSVRZLCBzb3J0ID0gVFJVRSkgJT4lXG4gIGFjYXN0KFRZUEUgfiBQT0xBUklUWSwgdmFsdWUudmFyID0gXFxuXFwsIGZpbGwgPSAwKSAlPiVcbiAgY29tcGFyaXNvbi5jbG91ZChjb2xvcnMgPSBjKFxcI0I0NDY0QlxcLCBcXCM0NjgyQjRcXCksXG4gICAgICAgICAgICAgICAgICAgbWF4LndvcmRzID0gMTAwLCB0aXRsZS5zaXplID0gMilcbmBgYCJ9 -->
 <pre class="r"><code>senti_df %&gt;%
   count(TYPE, POLARITY, sort = TRUE) %&gt;%
-  acast(TYPE ~ POLARITY, value.var = &quot;n&quot;, fill = 0) %&gt;%
-  comparison.cloud(colors = c(&quot;#B4464B&quot;, &quot;#4682B4&quot;),
+  acast(TYPE ~ POLARITY, value.var = \n\, fill = 0) %&gt;%
+  comparison.cloud(colors = c(\#B4464B\, \#4682B4\),
                    max.words = 100, title.size = 2)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1936,6 +1936,40 @@ Tipp<br />
 Welche Stimmung drückt folgender Satz aus:<br />
 <em>Ich habe keinen guten Tag.</em></p>
 </div>
+</div>
+<div id="section-2" class="section level1">
+<h1>2</h1>
+<p>Im Folgenden analysieren und interpretieren Sie die Stimmung in deutschen und chinesischen Volksmärchen.</p>
+<div class="think">
+<p><strong>Denkpause</strong><br />
+Bevor Sie beginnen: Erwarten Sie Ihrem Gefühl nach Unterschiede? Wenn ja, welche?</p>
+</div>
+<p>Wiederholen Sie die Analyse für die beiden Märchen-Korpora.</p>
+<p>Lesen Sie als Erstes die Korpora ein. Zur Erinnerung:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3JjPC1saXN0LmZpbGVzKFwiLi9jb3JwdXMtd2lsaGVsbS9cIilcbmRmPC1kYXRhLmZyYW1lKG1hdHJpeChucm93ID0gbGVuZ3RoKHNyYyksIG5jb2wgPSAyKSlcbmNvbG5hbWVzKGRmKTwtYyhcIlRFWFRcIiwgXCJEQVRFSVwiKVxuZm9yKGkgaW4gMTpsZW5ndGgoc3JjKSl7XG4gIGRmW2ksMV08LXJlYWRMaW5lcyhwYXN0ZShcIi4vY29ycHVzLXdpbGhlbG0vXCIsIHNyY1tpXSwgc2VwID0gXCJcIikpXG4gIGRmW2ksMl08LXNyY1tpXVxufVxud2lsaGVsbTwtYXNfdGliYmxlKGRmKVxuXG5zcmM8LWxpc3QuZmlsZXMoXCIuL2NvcnB1cy1ncmltbS9cIilcbmRmPC1kYXRhLmZyYW1lKG1hdHJpeChucm93ID0gbGVuZ3RoKHNyYyksIG5jb2wgPSAyKSlcbmNvbG5hbWVzKGRmKTwtYyhcIlRFWFRcIiwgXCJEQVRFSVwiKVxuZm9yKGkgaW4gMTpsZW5ndGgoc3JjKSl7XG4gIGRmW2ksMV08LXJlYWRMaW5lcyhwYXN0ZShcIi4vY29ycHVzLWdyaW1tL1wiLCBzcmNbaV0sIHNlcCA9IFwiXCIpKVxuICBkZltpLDJdPC1zcmNbaV1cbn1cbmdyaW1tPC1hc190aWJibGUoZGYpXG5ybShkZiwgaSwgc3JjKVxuYGBgIn0= -->
+<pre class="r"><code>src&lt;-list.files(&quot;./corpus-wilhelm/&quot;)
+df&lt;-data.frame(matrix(nrow = length(src), ncol = 2))
+colnames(df)&lt;-c(&quot;TEXT&quot;, &quot;DATEI&quot;)
+for(i in 1:length(src)){
+  df[i,1]&lt;-readLines(paste(&quot;./corpus-wilhelm/&quot;, src[i], sep = &quot;&quot;))
+  df[i,2]&lt;-src[i]
+}
+wilhelm&lt;-as_tibble(df)
+
+src&lt;-list.files(&quot;./corpus-grimm/&quot;)
+df&lt;-data.frame(matrix(nrow = length(src), ncol = 2))
+colnames(df)&lt;-c(&quot;TEXT&quot;, &quot;DATEI&quot;)
+for(i in 1:length(src)){
+  df[i,1]&lt;-readLines(paste(&quot;./corpus-grimm/&quot;, src[i], sep = &quot;&quot;))
+  df[i,2]&lt;-src[i]
+}
+grimm&lt;-as_tibble(df)
+rm(df, i, src)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <div id="literatur" class="section level2">
 <h2>Literatur</h2>
 <!-- rnb-text-end -->
@@ -1947,7 +1981,7 @@ Welche Stimmung drückt folgender Satz aus:<br />
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAnR3V0IHVuZCBCw7ZzZSwgTGllYmUgdW5kIEhhc3M6IFN0aW1tdW5nc2FuYWx5c2UnCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgZGZfcHJpbnQ6IHBhZ2VkCiAgICBjc3M6IHN0eWxlLmNzcwogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQKICBwZGZfZG9jdW1lbnQ6IGRlZmF1bHQKCmJpYmxpb2dyYXBoeTogbGl0LmJpYgotLS0KCmBgYHtyIGtsaXBweSwgZWNobz1GQUxTRSwgaW5jbHVkZT1UUlVFfQprbGlwcHk6OmtsaXBweShwb3NpdGlvbiA9IGMoJ3RvcCcsICdyaWdodCcpLCB0b29sdGlwX21lc3NhZ2UgPSAnS2xpY2tlbiB6dW0gS29waWVyZW4nLCB0b29sdGlwX3N1Y2Nlc3MgPSAnS29waWVydCEnKQpgYGAKCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChldmFsID0gRkFMU0UpCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkodGlkeXRleHQpCmxpYnJhcnkodG0pCmxpYnJhcnkodG9vbHMpCmxpYnJhcnkod29yZGNsb3VkKQpsaWJyYXJ5KHJlc2hhcGUyKQpsaWJyYXJ5KGdncGxvdDIpCmBgYAoKRGFzIGVuZ2xpc2NoZSBXb3J0ICpzZW50aW1lbnQqIGJlZGV1dGV0IGF1ZiBEZXV0c2NoICpTdGltbXVuZyogb2RlciAqTWVpbnVuZyosIGF1ZiBDaGluZXNpc2NoIOaDhee7qiBvZGVyIOaEj+ingS4gRGllIHNlbnRpbWVudCBhbmFseXNpcyBpc3QgZWluIFRlaWwgdm9uIFRleHQgTWluaW5nIHVuZCA8cT5iZXplaWNobmV0IGRpZSBhdXRvbWF0aXNjaGUgQXVzd2VydHVuZyB2b24gVGV4dGVuIG1pdCBkZW0gWmllbCwgZWluZSBbw4R1w59lcnVuZ10gYWxzIHBvc2l0aXYgb2RlciBuZWdhdGl2IHp1IGVya2VubmVuPC9xPiAoW1dpa2lwZWRpYV0oaHR0cHM6Ly9kZS53aWtpcGVkaWEub3JnL3dpa2kvU2VudGltZW50X0RldGVjdGlvbiksIDE2LjAxLjIwMjEpLiBEYXMgaXN0IHNwcmFjaHdpc3NlbnNjaGFmdGxpY2ggcmVsZXZhbnQsIGFiZXIgenVtIEJlaXNwaWVsIGF1Y2ggZsO8ciBIw6RuZGxlciBvZGVyIGluIGRlciBXZXJidW5nIHdpY2h0aWcuIAoKSW0gRm9sZ2VuZGVuIHdlcmRlbiBTaWUgKiooMSkqKiBkaWUgU3RpbW11bmcgSWhyZXMgTcOkcmNoZW5zIGFuYWx5c2llcmVuIHVuZCB2aXN1YWxpc2llcmVuIHVuZCBkaWUgRXJnZWJuaXNzZSB2ZXJnbGVpY2hlbi4gCgojIDAKCkJldm9yIFNpZSBiZWdpbm5lbiwgbcO8c3NlbiBTaWUgZWluaWdlIFBha2V0ZSBpbnN0YWxsaWVyZW4gdW5kIGRpZSBuw7Z0aWdlbiBQYWtldGUgYWt0aXZpZXJlbi4KCmBgYHtyfQpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KHRpZHl0ZXh0KQpsaWJyYXJ5KHRtKQpsaWJyYXJ5KHRvb2xzKQpsaWJyYXJ5KHdvcmRjbG91ZCkKbGlicmFyeShyZXNoYXBlMikKbGlicmFyeShnZ3Bsb3QyKQpgYGAKCiMgMQoKTGVzZW4gU2llIElocmVuIE3DpHJjaGVudGV4dCBlaW4uIFp1ciBFcmlubmVydW5nOiAKCmBgYHtyfQpmaWxlQ29ubjwtZmlsZSgiLi9jb3JwdXMtZ3JpbW0vbWFlaHJjaGVuX3Zvbl9laW5lbV9kZXJfYXVzem9nX2Rhc19mdWVyY2h0ZW5fenVfbGVybmVuLnR4dCIpCnRleHQ8LXJlYWRMaW5lcyhmaWxlQ29ubikKY2xvc2UoZmlsZUNvbm4pCnRleHQKCnRleHRfZGY8LXRpYmJsZShURVhUID0gdGV4dCkKYGBgCgpGw7xyIGVpbmUgU3RpbW11bmdzYW5hbHlzZSBJaHJlcyBNw6RyY2hlbnMgYmVuw7Z0aWdlbiBTaWUgZWluIFfDtnJ0ZXJidWNoLCBpbiBkZW0gZGVyIGVtb3Rpb25hbGUgV2VydCBqZWRlcyBXb3J0ZXMgZWluZ2V0cmFnZW4gaXN0LiBJbiBlaW5lbSBTdGltbXVuZ3N3w7ZydGVyYnVjaCBpc3QgenVtIEJlaXNwaWVsIGVpbmdldHJhZ2VuLCBkYXNzICpmcmV1bmRsaWNoKiBlaW4gcG9zaXRpdmVzIFdvcnQsIGFiZXIgKmdlbWVpbiogZWluIG5lZ2F0aXZlcyBXb3J0IGlzdC4gCgo8ZGl2IGNsYXNzPSd0aGluayc+CioqRGVua3BhdXNlKiogIApXaWUga8O2bm50ZW4gU2llIGVpbiBzb2xjaGVzIFfDtnJ0ZXJidWNoIGVyc3RlbGxlbj8KPC9kaXY+CgpEaWUgVW5pdmVyc2l0w6R0IExlaXB6aWcgaGF0IGVpbiBTdGltbXVuZ3N3w7ZydGVyYnVjaCBmw7xyIGRhcyBEZXV0c2NoZSBuYW1lbnMgKlNlbnRpbWVudFdvcnRzY2hhdHoqIG9kZXIgKlNlbnRpV1MqIGVyc3RlbGx0IFtAUmVtdXMuMjAxMF0uIEljaCBoYWJlIGRhcyBXw7ZydGVyYnVjaCBmw7xyIFNpZSB2b3JiZXJlaXRldC4gTGFkZW4gU2llIGRhcyBXw7ZydGVyYnVjaCBpbiBSIG1pdCBmb2xnZW5kZW4gQmVmZWhsZW4uIAoKYGBge3J9CnNlbnRpV1M8LXJlYWQudGFibGUoIi4vZGF0YS9zZW50aVdTLnR4dCIsIHNlcCA9ICJcdCIsIGhlYWRlciA9IFRSVUUpCnNlbnRpV1M8LWFzX3RpYmJsZShzZW50aVdTKQpzZW50aVdTCmBgYAoKSW0gV8O2cnRlcmJ1Y2ggaGFiZW4gYWxsZSBFaW50csOkZ2UgZWluZW4gV2VydCB6d2lzY2hlbiAtMSB1bmQgMS4gRWluIHBvc2l0aXZlciBXZXJ0IHplaWd0IGVpbmUgcG9zaXRpdmUgU3RpbW11bmcgYW4sIGVpbiBuZWdhdGl2ZXIgV2VydCBlaW5lIG5lZ2F0aXZlIFN0aW1tdW5nLiBFcmfDpG56ZW4gU2llIGRhcyBXw7ZydGVyYnVjaCB1bSBlaW5lbiBGYWt0b3IgKlBPTEFSSVRZKiwgZGVyIGFuemVpZ3QsIG9iIGVpbiBXb3J0IHBvc2l0aXYgb2RlciBuZWdhdGl2IGlzdC4gCgpgYGB7cn0Kc2VudGlXUzwtc2VudGlXUyAlPiUgCiAgbXV0YXRlKFBPTEFSSVRZID0gaWZlbHNlKFZBTFVFIDwgMCwgIm5lZ2F0aXZlIiwgInBvc2l0aXZlIikpCnNlbnRpV1MKYGBgCgpTdWNoZW4gU2llIGpldHp0IGRpZSBFaW50csOkZ2UgZsO8ciAqZnJldW5kbGljaCogdW5kICpnZW1laW4qIGltIFfDtnJ0ZXJidWNoLgoKPGRpdiBjbGFzcz0ndGhpbmsnPgoqKkRlbmtwYXVzZSoqICAKV2FzIHdlcmRlbiBkaWUgRWludHLDpGdlIGbDvHIgKmZyZXVuZGxpY2gqIHVuZCAqZ2VtZWluKiB6ZWlnZW4/IAo8L2Rpdj4KCmBgYHtyfQpzZW50aVdTICU+JQogIGZpbHRlcihXT1JEID09ICJmcmV1bmRsaWNoIikKc2VudGlXUyAlPiUKICBmaWx0ZXIoV09SRCA9PSAiZ2VtZWluIikKYGBgCgpHZWJlbiBTaWUgamV0enQgamVkZW0gV29ydCBpbiBJaHJlbSBNw6RyY2hlbiBtaXQgZGVyIEZ1bmt0aW9uIGBpbm5lcl9qb2luKClgIGVpbmVuIFN0aW1tdW5nc3dlcnQuIChOb3RpejogVmVybXV0bGljaCBpc3QgbmljaHQgamVkZXMgV29ydCBpbiBJaHJlbSBNw6RyY2hlbiBpbSBXw7ZydGVyYnVjaC4gTWl0IGBpbm5lcl9qb2luKClgIHdlcmRlbiBudXIgZGllIFfDtnJ0ZXIgYmVhcmJlaXRldCwgZGllIHNvd29obCBpbSBNw6RyY2hlbiBhbHMgYXVjaCBpbSBXw7ZydGVyYnVjaCBlbnRoYWx0ZW4gc2luZC4pCgpgYGB7cn0KCiMgVG9rZW5pc2llcmVuCnRva2Vuc19kZjwtdGV4dF9kZiAlPiUKICB1bm5lc3RfdG9rZW5zKFdPUkQsIFRFWFQpCgojIFN0b3Bwd8O2cnRlcgphbGxTdG9wd29yZHM8LWFwcGVuZChzdG9wd29yZHMoImRlIiksIHRvVGl0bGVDYXNlKHN0b3B3b3JkcygiZGUiKSkpCnN0b3B3b3JkX2RmPC10aWJibGUoV09SRCA9IGFsbFN0b3B3b3JkcykKdG9rZW5zX2RmPC10b2tlbnNfZGYgJT4lCiAgYW50aV9qb2luKHN0b3B3b3JkX2RmLCBieSA9ICJXT1JEIikKCiMgU3RpbW11bmdzd2VydGUKc2VudGlfZGY8LXRva2Vuc19kZiAlPiUKICBpbm5lcl9qb2luKHNlbnRpV1MsIGJ5ID0gIldPUkQiKQpzZW50aV9kZgpgYGAKCldlbGNoZSBXw7ZydGVyIHRyYWdlbiBiZXNvbmRlcnMgc3RhcmsgenVyIFN0aW1tdW5nIGluIElocmVtIE3DpHJjaGVuIGJlaT8gRGVyIGZvbGdlbmRlIENvZGUgZXJ6ZXVndCBlaW5lIEJhbGtlbmdyYWZpayB6dXIgVmVyYW5zY2hhdWxpY2h1bmcgZGVyIEjDpHVmaWdrZWl0IHZlcnNjaGllZGVuZXIgV8O2cnRlciAoVHlwZXMpIHVuZCBpaHJlciBTdGltbXVuZy4gCgpgYGB7cn0KbGlicmFyeShnZ3Bsb3QyKQoKc2VudGlfZGYgJT4lCiAgY291bnQoVFlQRSwgUE9MQVJJVFksIHNvcnQgPSBUUlVFKSAlPiUKICBncm91cF9ieShQT0xBUklUWSkgJT4lCiAgbXV0YXRlKFRZUEUgPSByZW9yZGVyKFRZUEUsIG4pKSAlPiUKICBzbGljZV9oZWFkKG4gPSAzMCkgJT4lCiAgZ2dwbG90KGFlcyhuLCBUWVBFLCBmaWxsID0gUE9MQVJJVFkpKSArCiAgZ2VvbV9jb2woc2hvdy5sZWdlbmQgPSBGQUxTRSkgKyAKICBmYWNldF93cmFwKH5QT0xBUklUWSwgc2NhbGVzID0gImZyZWUiKSArIAogIGxhYnMoeT1OVUxMLCB4PU5VTEwpCmBgYApBdWNoIGVpbmUgc2Now7ZuZSBBcnQsIEjDpHVmaWdrZWl0ZW4genUgdmVyYW5zY2hhdWxpY2hlbiwgc2luZCBXb3J0d29sa2VuLiAKCmBgYHtyfQpzZW50aV9kZiAlPiUKICBjb3VudChUWVBFLCBQT0xBUklUWSwgc29ydCA9IFRSVUUpICU+JQogIGFjYXN0KFRZUEUgfiBQT0xBUklUWSwgdmFsdWUudmFyID0gIm4iLCBmaWxsID0gMCkgJT4lCiAgY29tcGFyaXNvbi5jbG91ZChjb2xvcnMgPSBjKCIjQjQ0NjRCIiwgIiM0NjgyQjQiKSwKICAgICAgICAgICAgICAgICAgIG1heC53b3JkcyA9IDEwMCwgdGl0bGUuc2l6ZSA9IDIpCmBgYAoKVmVyZ2xlaWNoZW4gU2llIElocmUgTcOkcmNoZW4gbWl0ZWluYW5kZXIuIFdlbGNoZSBHZW1laW5zYW1rZWl0ZW4sIHdlbGNoZSBVbnRlcnNjaGllZGUgZmluZGVuIFNpZT8gV2llIGd1dCBwYXNzdCBkYXMgRXJnZWJuaXMgbWl0IElocmVtIHN1Ympla3RpdmVuIExlc2VlaW5kcnVjayB6dXNhbW1lbj8KCjxkaXYgY2xhc3M9J3RoaW5rJz4KKipEZW5rcGF1c2UqKiAgCldlbGNoZXMgZ3J1bmRsZWdlbmRlIFByb2JsZW0gaGF0IGRpZXNlciBBbnNhdHogenVyIFN0aW1tdW5nc2FuYWx5c2U/ICAKVGlwcCAgCldlbGNoZSBTdGltbXVuZyBkcsO8Y2t0IGZvbGdlbmRlciBTYXR6IGF1czogIAoqSWNoIGhhYmUga2VpbmVuIGd1dGVuIFRhZy4qCjwvZGl2PgoKIyMgTGl0ZXJhdHVy</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAnR3V0IHVuZCBCw7ZzZSwgTGllYmUgdW5kIEhhc3M6IFN0aW1tdW5nc2FuYWx5c2UnCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgZGZfcHJpbnQ6IHBhZ2VkCiAgICBjc3M6IHN0eWxlLmNzcwogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQKICBwZGZfZG9jdW1lbnQ6IGRlZmF1bHQKCmJpYmxpb2dyYXBoeTogbGl0LmJpYgotLS0KCmBgYHtyIGtsaXBweSwgZWNobz1GQUxTRSwgaW5jbHVkZT1UUlVFfQprbGlwcHk6OmtsaXBweShwb3NpdGlvbiA9IGMoJ3RvcCcsICdyaWdodCcpLCB0b29sdGlwX21lc3NhZ2UgPSAnS2xpY2tlbiB6dW0gS29waWVyZW4nLCB0b29sdGlwX3N1Y2Nlc3MgPSAnS29waWVydCEnKQpgYGAKCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChldmFsID0gRkFMU0UpCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkodGlkeXRleHQpCmxpYnJhcnkodG0pCmxpYnJhcnkodG9vbHMpCmxpYnJhcnkod29yZGNsb3VkKQpsaWJyYXJ5KHJlc2hhcGUyKQpsaWJyYXJ5KGdncGxvdDIpCmBgYAoKRGFzIGVuZ2xpc2NoZSBXb3J0ICpzZW50aW1lbnQqIGJlZGV1dGV0IGF1ZiBEZXV0c2NoICpTdGltbXVuZyogb2RlciAqTWVpbnVuZyosIGF1ZiBDaGluZXNpc2NoIOaDhee7qiBvZGVyIOaEj+ingS4gRGllIHNlbnRpbWVudCBhbmFseXNpcyBpc3QgZWluIFRlaWwgdm9uIFRleHQgTWluaW5nIHVuZCA8cT5iZXplaWNobmV0IGRpZSBhdXRvbWF0aXNjaGUgQXVzd2VydHVuZyB2b24gVGV4dGVuIG1pdCBkZW0gWmllbCwgZWluZSBbw4R1w59lcnVuZ10gYWxzIHBvc2l0aXYgb2RlciBuZWdhdGl2IHp1IGVya2VubmVuPC9xPiAoW1dpa2lwZWRpYV0oaHR0cHM6Ly9kZS53aWtpcGVkaWEub3JnL3dpa2kvU2VudGltZW50X0RldGVjdGlvbiksIDE2LjAxLjIwMjEpLiBEYXMgaXN0IHNwcmFjaHdpc3NlbnNjaGFmdGxpY2ggcmVsZXZhbnQsIGFiZXIgenVtIEJlaXNwaWVsIGF1Y2ggZsO8ciBIw6RuZGxlciBvZGVyIGluIGRlciBXZXJidW5nIHdpY2h0aWcuIAoKSW0gRm9sZ2VuZGVuIHdlcmRlbiBTaWUgKiooMSkqKiBkaWUgU3RpbW11bmcgSWhyZXMgTcOkcmNoZW5zIGFuYWx5c2llcmVuIHVuZCB2aXN1YWxpc2llcmVuIHVuZCBkaWUgRXJnZWJuaXNzZSB2ZXJnbGVpY2hlbi4gKiooMikqKiBEaWUgU3RpbW11bmcgZGV1dHNjaGVyIHVuZCBjaGluZXNpc2NoZXIgTcOkcmNoZW4gYW5hbHlzaWVyZW4gdW5kIHZlcmdsZWljaGVuLiAKCiMgMAoKQmV2b3IgU2llIGJlZ2lubmVuLCBtw7xzc2VuIFNpZSBlaW5pZ2UgUGFrZXRlIGluc3RhbGxpZXJlbiB1bmQgZGllIG7DtnRpZ2VuIFBha2V0ZSBha3RpdmllcmVuLgoKYGBge3J9CmxpYnJhcnkoZHBseXIpCmxpYnJhcnkodGlkeXRleHQpCmxpYnJhcnkodG0pCmxpYnJhcnkodG9vbHMpCmxpYnJhcnkod29yZGNsb3VkKQpsaWJyYXJ5KHJlc2hhcGUyKQpsaWJyYXJ5KGdncGxvdDIpCmBgYAoKIyAxCgpMZXNlbiBTaWUgSWhyZW4gTcOkcmNoZW50ZXh0IGVpbi4gWnVyIEVyaW5uZXJ1bmc6IAoKYGBge3J9CmZpbGVDb25uPC1maWxlKCIuL2NvcnB1cy1ncmltbS9tYWVocmNoZW5fdm9uX2VpbmVtX2Rlcl9hdXN6b2dfZGFzX2Z1ZXJjaHRlbl96dV9sZXJuZW4udHh0IikKdGV4dDwtcmVhZExpbmVzKGZpbGVDb25uKQpjbG9zZShmaWxlQ29ubikKdGV4dAoKdGV4dF9kZjwtdGliYmxlKFRFWFQgPSB0ZXh0KQpgYGAKCkbDvHIgZWluZSBTdGltbXVuZ3NhbmFseXNlIElocmVzIE3DpHJjaGVucyBiZW7DtnRpZ2VuIFNpZSBlaW4gV8O2cnRlcmJ1Y2gsIGluIGRlbSBkZXIgZW1vdGlvbmFsZSBXZXJ0IGplZGVzIFdvcnRlcyBlaW5nZXRyYWdlbiBpc3QuIEluIGVpbmVtIFN0aW1tdW5nc3fDtnJ0ZXJidWNoIGlzdCB6dW0gQmVpc3BpZWwgZWluZ2V0cmFnZW4sIGRhc3MgKmZyZXVuZGxpY2gqIGVpbiBwb3NpdGl2ZXMgV29ydCwgYWJlciAqZ2VtZWluKiBlaW4gbmVnYXRpdmVzIFdvcnQgaXN0LiAKCjxkaXYgY2xhc3M9J3RoaW5rJz4KKipEZW5rcGF1c2UqKiAgCldpZSBrw7ZubnRlbiBTaWUgZWluIHNvbGNoZXMgV8O2cnRlcmJ1Y2ggZXJzdGVsbGVuPwo8L2Rpdj4KCkRpZSBVbml2ZXJzaXTDpHQgTGVpcHppZyBoYXQgZWluIFN0aW1tdW5nc3fDtnJ0ZXJidWNoIGbDvHIgZGFzIERldXRzY2hlIG5hbWVucyAqU2VudGltZW50V29ydHNjaGF0eiogb2RlciAqU2VudGlXUyogZXJzdGVsbHQgW0BSZW11cy4yMDEwXS4gSWNoIGhhYmUgZGFzIFfDtnJ0ZXJidWNoIGbDvHIgU2llIHZvcmJlcmVpdGV0LiBMYWRlbiBTaWUgZGFzIFfDtnJ0ZXJidWNoIGluIFIgbWl0IGZvbGdlbmRlbiBCZWZlaGxlbi4gCgpgYGB7cn0Kc2VudGlXUzwtcmVhZC50YWJsZSgiLi9kYXRhL3NlbnRpV1MudHh0Iiwgc2VwID0gIlx0IiwgaGVhZGVyID0gVFJVRSkKc2VudGlXUzwtYXNfdGliYmxlKHNlbnRpV1MpCnNlbnRpV1MKYGBgCgpJbSBXw7ZydGVyYnVjaCBoYWJlbiBhbGxlIEVpbnRyw6RnZSBlaW5lbiBXZXJ0IHp3aXNjaGVuIC0xIHVuZCAxLiBFaW4gcG9zaXRpdmVyIFdlcnQgemVpZ3QgZWluZSBwb3NpdGl2ZSBTdGltbXVuZyBhbiwgZWluIG5lZ2F0aXZlciBXZXJ0IGVpbmUgbmVnYXRpdmUgU3RpbW11bmcuIEVyZ8OkbnplbiBTaWUgZGFzIFfDtnJ0ZXJidWNoIHVtIGVpbmVuIEZha3RvciAqUE9MQVJJVFkqLCBkZXIgYW56ZWlndCwgb2IgZWluIFdvcnQgcG9zaXRpdiBvZGVyIG5lZ2F0aXYgaXN0LiAKCmBgYHtyfQpzZW50aVdTPC1zZW50aVdTICU+JSAKICBtdXRhdGUoUE9MQVJJVFkgPSBpZmVsc2UoVkFMVUUgPCAwLCAibmVnYXRpdmUiLCAicG9zaXRpdmUiKSkKc2VudGlXUwpgYGAKClN1Y2hlbiBTaWUgamV0enQgZGllIEVpbnRyw6RnZSBmw7xyICpmcmV1bmRsaWNoKiB1bmQgKmdlbWVpbiogaW0gV8O2cnRlcmJ1Y2guCgo8ZGl2IGNsYXNzPSd0aGluayc+CioqRGVua3BhdXNlKiogIApXYXMgd2VyZGVuIGRpZSBFaW50csOkZ2UgZsO8ciAqZnJldW5kbGljaCogdW5kICpnZW1laW4qIHplaWdlbj8gCjwvZGl2PgoKYGBge3J9CnNlbnRpV1MgJT4lCiAgZmlsdGVyKFdPUkQgPT0gImZyZXVuZGxpY2giKQpzZW50aVdTICU+JQogIGZpbHRlcihXT1JEID09ICJnZW1laW4iKQpgYGAKCkdlYmVuIFNpZSBqZXR6dCBqZWRlbSBXb3J0IGluIElocmVtIE3DpHJjaGVuIG1pdCBkZXIgRnVua3Rpb24gYGlubmVyX2pvaW4oKWAgZWluZW4gU3RpbW11bmdzd2VydC4gKE5vdGl6OiBWZXJtdXRsaWNoIGlzdCBuaWNodCBqZWRlcyBXb3J0IGluIElocmVtIE3DpHJjaGVuIGltIFfDtnJ0ZXJidWNoLiBNaXQgYGlubmVyX2pvaW4oKWAgd2VyZGVuIG51ciBkaWUgV8O2cnRlciBiZWFyYmVpdGV0LCBkaWUgc293b2hsIGltIE3DpHJjaGVuIGFscyBhdWNoIGltIFfDtnJ0ZXJidWNoIGVudGhhbHRlbiBzaW5kLikKCmBgYHtyfQoKIyBUb2tlbmlzaWVyZW4KdG9rZW5zX2RmPC10ZXh0X2RmICU+JQogIHVubmVzdF90b2tlbnMoV09SRCwgVEVYVCkKCiMgU3RvcHB3w7ZydGVyCmFsbFN0b3B3b3JkczwtYXBwZW5kKHN0b3B3b3JkcygiZGUiKSwgdG9UaXRsZUNhc2Uoc3RvcHdvcmRzKCJkZSIpKSkKc3RvcHdvcmRfZGY8LXRpYmJsZShXT1JEID0gYWxsU3RvcHdvcmRzKQp0b2tlbnNfZGY8LXRva2Vuc19kZiAlPiUKICBhbnRpX2pvaW4oc3RvcHdvcmRfZGYsIGJ5ID0gIldPUkQiKQoKIyBTdGltbXVuZ3N3ZXJ0ZQpzZW50aV9kZjwtdG9rZW5zX2RmICU+JQogIGlubmVyX2pvaW4oc2VudGlXUywgYnkgPSAiV09SRCIpCnNlbnRpX2RmCmBgYAoKV2VsY2hlIFfDtnJ0ZXIgdHJhZ2VuIGJlc29uZGVycyBzdGFyayB6dXIgU3RpbW11bmcgaW4gSWhyZW0gTcOkcmNoZW4gYmVpPyBEZXIgZm9sZ2VuZGUgQ29kZSBlcnpldWd0IGVpbmUgQmFsa2VuZ3JhZmlrIHp1ciBWZXJhbnNjaGF1bGljaHVuZyBkZXIgSMOkdWZpZ2tlaXQgdmVyc2NoaWVkZW5lciBXw7ZydGVyIChUeXBlcykgdW5kIGlocmVyIFN0aW1tdW5nLiAKCmBgYHtyfQpsaWJyYXJ5KGdncGxvdDIpCgpzZW50aV9kZiAlPiUKICBjb3VudChUWVBFLCBQT0xBUklUWSwgc29ydCA9IFRSVUUpICU+JQogIGdyb3VwX2J5KFBPTEFSSVRZKSAlPiUKICBtdXRhdGUoVFlQRSA9IHJlb3JkZXIoVFlQRSwgbikpICU+JQogIHNsaWNlX2hlYWQobiA9IDMwKSAlPiUKICBnZ3Bsb3QoYWVzKG4sIFRZUEUsIGZpbGwgPSBQT0xBUklUWSkpICsKICBnZW9tX2NvbChzaG93LmxlZ2VuZCA9IEZBTFNFKSArIAogIGZhY2V0X3dyYXAoflBPTEFSSVRZLCBzY2FsZXMgPSAiZnJlZSIpICsgCiAgbGFicyh5PU5VTEwsIHg9TlVMTCkKYGBgCkF1Y2ggZWluZSBzY2jDtm5lIEFydCwgSMOkdWZpZ2tlaXRlbiB6dSB2ZXJhbnNjaGF1bGljaGVuLCBzaW5kIFdvcnR3b2xrZW4uIAoKYGBge3J9CnNlbnRpX2RmICU+JQogIGNvdW50KFRZUEUsIFBPTEFSSVRZLCBzb3J0ID0gVFJVRSkgJT4lCiAgYWNhc3QoVFlQRSB+IFBPTEFSSVRZLCB2YWx1ZS52YXIgPSAibiIsIGZpbGwgPSAwKSAlPiUKICBjb21wYXJpc29uLmNsb3VkKGNvbG9ycyA9IGMoIiNCNDQ2NEIiLCAiIzQ2ODJCNCIpLAogICAgICAgICAgICAgICAgICAgbWF4LndvcmRzID0gMTAwLCB0aXRsZS5zaXplID0gMikKYGBgCgpWZXJnbGVpY2hlbiBTaWUgSWhyZSBNw6RyY2hlbiBtaXRlaW5hbmRlci4gV2VsY2hlIEdlbWVpbnNhbWtlaXRlbiwgd2VsY2hlIFVudGVyc2NoaWVkZSBmaW5kZW4gU2llPyBXaWUgZ3V0IHBhc3N0IGRhcyBFcmdlYm5pcyBtaXQgSWhyZW0gc3ViamVrdGl2ZW4gTGVzZWVpbmRydWNrIHp1c2FtbWVuPwoKPGRpdiBjbGFzcz0ndGhpbmsnPgoqKkRlbmtwYXVzZSoqICAKV2VsY2hlcyBncnVuZGxlZ2VuZGUgUHJvYmxlbSBoYXQgZGllc2VyIEFuc2F0eiB6dXIgU3RpbW11bmdzYW5hbHlzZT8gIApUaXBwICAKV2VsY2hlIFN0aW1tdW5nIGRyw7xja3QgZm9sZ2VuZGVyIFNhdHogYXVzOiAgCipJY2ggaGFiZSBrZWluZW4gZ3V0ZW4gVGFnLioKPC9kaXY+CgojIDIgCgpJbSBGb2xnZW5kZW4gYW5hbHlzaWVyZW4gdW5kIGludGVycHJldGllcmVuIFNpZSBkaWUgU3RpbW11bmcgaW4gZGV1dHNjaGVuIHVuZCBjaGluZXNpc2NoZW4gVm9sa3Ntw6RyY2hlbi4gCgo8ZGl2IGNsYXNzPSd0aGluayc+CioqRGVua3BhdXNlKiogIApCZXZvciBTaWUgYmVnaW5uZW46IEVyd2FydGVuIFNpZSBJaHJlbSBHZWbDvGhsIG5hY2ggVW50ZXJzY2hpZWRlPyBXZW5uIGphLCB3ZWxjaGU/CjwvZGl2PgoKV2llZGVyaG9sZW4gU2llIGRpZSBBbmFseXNlIGbDvHIgZGllIGJlaWRlbiBNw6RyY2hlbi1Lb3Jwb3JhLiAKCkxlc2VuIFNpZSBhbHMgRXJzdGVzIGRpZSBLb3Jwb3JhIGVpbi4gWnVyIEVyaW5uZXJ1bmc6IAoKYGBge3J9CnNyYzwtbGlzdC5maWxlcygiLi9jb3JwdXMtd2lsaGVsbS8iKQpkZjwtZGF0YS5mcmFtZShtYXRyaXgobnJvdyA9IGxlbmd0aChzcmMpLCBuY29sID0gMikpCmNvbG5hbWVzKGRmKTwtYygiVEVYVCIsICJEQVRFSSIpCmZvcihpIGluIDE6bGVuZ3RoKHNyYykpewogIGRmW2ksMV08LXJlYWRMaW5lcyhwYXN0ZSgiLi9jb3JwdXMtd2lsaGVsbS8iLCBzcmNbaV0sIHNlcCA9ICIiKSkKICBkZltpLDJdPC1zcmNbaV0KfQp3aWxoZWxtPC1hc190aWJibGUoZGYpCgpzcmM8LWxpc3QuZmlsZXMoIi4vY29ycHVzLWdyaW1tLyIpCmRmPC1kYXRhLmZyYW1lKG1hdHJpeChucm93ID0gbGVuZ3RoKHNyYyksIG5jb2wgPSAyKSkKY29sbmFtZXMoZGYpPC1jKCJURVhUIiwgIkRBVEVJIikKZm9yKGkgaW4gMTpsZW5ndGgoc3JjKSl7CiAgZGZbaSwxXTwtcmVhZExpbmVzKHBhc3RlKCIuL2NvcnB1cy1ncmltbS8iLCBzcmNbaV0sIHNlcCA9ICIiKSkKICBkZltpLDJdPC1zcmNbaV0KfQpncmltbTwtYXNfdGliYmxlKGRmKQpybShkZiwgaSwgc3JjKQpgYGAKCiMjIExpdGVyYXR1cg==</div>
 
 
 
