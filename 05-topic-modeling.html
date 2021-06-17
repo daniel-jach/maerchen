@@ -222,7 +222,7 @@ for(i in 1:length(src)){
   df[i,1]&lt;-readLines(paste(&quot;./corpus-grimm/&quot;, src[i], sep = &quot;&quot;))
   df[i,2]&lt;-sub(&quot;.txt&quot;, &quot;&quot;, src[i], fixed = TRUE)
 }
-sample&lt;-corpus[sample(1:nrow(corpus), 20),]
+sample&lt;-df[sample(1:nrow(df), 20),]
 sample$SOURCE&lt;-&quot;grimm&quot;</code></pre>
 </div>
 <div id="section-1" class="section level1">
